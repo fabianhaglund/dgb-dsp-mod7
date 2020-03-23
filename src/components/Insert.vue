@@ -18,13 +18,16 @@
 
 <script>
 
+    import io from "socket.io-client";
+
     const socket = io();
 
     export default {
         name: 'Insert',
         methods: {
             insertProduct: function(){
-                socket.emit('putNewProduct', {"productCode": "A100", "quantity": 20, "price": 400, "supplierId": "sjdksjdksjdk"})
+                console.log("Does this even happen?")
+                socket.emit('putNewProduct', {"productCode": "A100", "quantity": 20, "price": 400, "supplierId": "sjdksjdksjdk"});
             }
         }
     }

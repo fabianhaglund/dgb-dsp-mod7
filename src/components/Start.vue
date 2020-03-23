@@ -3,12 +3,15 @@
         <div id="buttons">
             <button v-on:click="insert">Insert</button>
             <button>Remove</button>
-            <button>Display</button>
+            <button v-on:click="display">Display</button>
             <button>Update</button>
         </div>
 
-        <div v-if="showInsert">
+        <div v-if="modalToShow==='insert'">
             <Insert/>
+        </div>
+        <div v-if="modalToShow==='display'">
+            <Display/>
         </div>
 
     </div>
@@ -17,21 +20,27 @@
 <script>
 
 import Insert from './Insert.vue'
+import Display from './Display.vue'
 
 export default {
     name: 'Start',
     components: {
-        Insert
+        Insert,
+        Display
     },
     data: function (){
         return {
-            showInsert: false
+            modalToShow: "none"
         }
     },
     methods: {
         insert: function(){
             console.log("insert");
-            this.showInsert = true;
+            this.modalToShow = "insert";
+        },
+        display: function(){
+            console.log("display");
+            this.modalToShow = "display";
         }
     }
 }
