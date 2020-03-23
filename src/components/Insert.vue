@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="insert">
 
         <p>Unique integer identifier</p>
         <input/>
@@ -10,7 +10,7 @@
         <p>Price</p>
         <input/>
 
-        <button v-on:click="insertProduct"/>
+        <button class="submitButton" v-on:click="insertProduct">Confirm</button>
 
 
     </div>
@@ -18,7 +18,23 @@
 
 <script>
 
+    const socket = io();
+
     export default {
-        name: 'Insert'
+        name: 'Insert',
+        methods: {
+            insertProduct: function(){
+                socket.emit('putNewProduct', {"productCode": "A100", "quantity": 20, "price": 400, "supplierId": "sjdksjdksjdk"})
+            }
+        }
     }
+
 </script>
+
+<style scoped>
+    #insert {
+        display: flex; 
+        flex-direction: column;
+        width: 200px;
+    }
+</style>

@@ -30,4 +30,9 @@
     font-size: 24px;
   }
 
+  .submitButton {
+    font-size: 16px;
+    background-color: lightgray;
+  }
+
 </style>
