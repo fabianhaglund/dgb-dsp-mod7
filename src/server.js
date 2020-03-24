@@ -63,7 +63,7 @@ client.connect(err => {
                         if (err) {
                             socket.emit("responsePutNewProduct", {success: false});
                         } else {
-                            socket.esmit("responsePutNewProduct", {success: true, productId});
+                            socket.emit("responsePutNewProduct", {success: true, productId});
                         }
                     });
                 }

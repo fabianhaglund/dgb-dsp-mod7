@@ -1,6 +1,6 @@
 <template>
     <div id="display">
-        <button class="actionButton" v-on:click="displayProducts">Get products!</button>
+        <button class="actionButton" v-on:click="getProducts">Get products!</button>
 
         <div id="displayData">{{ this.responseGetProducts }}</div>
     </div>
@@ -20,9 +20,8 @@
             }
         },
         methods: {
-            displayProducts: function(){
-                
-                socket.emit('getProducts');
+            getProducts: function(){
+                console.log("getProducts");
                 socket.on('responseGetProducts', function({success, ourString}) {
                     console.log("...how?");
                     if (success) {
@@ -31,6 +30,7 @@
                         console.log("Something went wrong displaying the products!");
                     }
                 });
+                socket.emit('getProducts');
             }
         }
     }
