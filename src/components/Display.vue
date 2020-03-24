@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<script>
+<script scoped>
 
     import io from "socket.io-client";
 
@@ -14,6 +14,7 @@
         name: 'Display',
         methods: {
             displayProducts: function(){
+                
                 socket.emit('getProducts');
                 socket.on('responseGetProducts', function({success, ourString}) {
                     console.log("...how?");

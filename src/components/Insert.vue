@@ -1,14 +1,17 @@
 <template>
     <div id="insert">
 
-        <p>Unique integer identifier</p>
-        <input/>
         <p>Product code</p>
-        <input/>
+        <input v-model="productCode"/>
+
         <p>Quantity</p>
-        <input/>
+        <input v-model="quantity" type="number"/>
+
         <p>Price</p>
-        <input/>
+        <input v-model="price" type="number"/>
+
+        <p>Supplier ID</p>
+        <input v-model="supplierId"/>
 
         <button class="submitButton" v-on:click="insertProduct">Confirm</button>
 
@@ -24,10 +27,22 @@
 
     export default {
         name: 'Insert',
+        data: function(){
+            return {
+                productCode: "",
+                quantity: 0,
+                price: 0,
+                supplierId: "", 
+            }
+        },
         methods: {
             insertProduct: function(){
-                console.log("Does this even happen?")
-                socket.emit('putNewProduct', {"productCode": "A100", "quantity": 20, "price": 400, "supplierId": "sjdksjdksjdk"});
+                console.log("Insert product into database:");
+                console.log("productCode: " + this.productCode); 
+                console.log("quantity: " + this.quantity);
+                console.log("price " + this.price);
+                console.log("supplier ID " + this.supplierId);
+                socket.emit('putNewProduct', {"productCode": this.productCode, "quantity": this.quantity, "price": this.price, "supplierId": this.supplierId});
             }
         }
     }
