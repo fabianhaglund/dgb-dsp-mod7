@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Speed Date</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://vuejs.org/js/vue.js"></script>
+        <script src="js/vue_script.js" defer></script>
+    </head>
+    <body>
+        <main id="everything">
+			<header>DATABASE, DATABASE, LIVING IN THE DATABASE, WO-OH</header>
+            <form id="user-data-form" v-on:submit="submitNewUser()">
+                <section class="user-data-form-basic">
+                    Product Code: <input v-model="productCode" type="text" placeholder="Product Code"><br/>
+                    Quantity: <input v-model="quantity" type="number" placeholder="Quantity"><br/>
+                    Price: <input v-model="price" type="number" placeholder="Price"><br/>
+                    Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID">
+                </section>
+                <div style="text-align: center;">
+                    <button type="button" class="submit-button" v-on:click="submitNewProduct">Submit new product</button>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="submit-button" v-on:click="displayAllProducts">Display all products</button>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>

@@ -1,25 +1,29 @@
+/* jslint node: true */
+/* eslint-env node */
 'use strict';
 
+// Require express, socket.io, and vue
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const path = require('path');
+const fs = require('fs');
 
-//Select a port
-const port = 8080;
+// Pick arbitrary port for server
+const port = 3000;
 app.set('port', (process.env.PORT || port));
 
 // Serve static assets from public/
-app.use(express.static(path.join(__dirname, '../public/')));
-
+app.use(express.static(path.join(__dirname, 'public/')));
 // Serve vue from node_modules as vue/
-app.use('/vue', express.static(path.join(__dirname, '../node_modules/vue/dist/')));
-    
 
-//Serve index.html: it's the only one we have ATM
+app.use('/vue',
+	express.static(path.join(__dirname, '/node_modules/vue/dist/')));
+
+// Serve index.html directly as root page
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '../public/index.html'));
+    res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
 

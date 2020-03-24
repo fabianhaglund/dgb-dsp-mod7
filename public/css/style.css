@@ -1,0 +1,17 @@
+header {
+	background-color: rgb(125, 124, 154);
+}
+
+button {
+    background-color: rgb(63, 41, 144);
+}
+
+button:not([disabled]):hover {
+    background-color: rgb(125, 124, 154);
+}
+
+.submit-button {
+	font-size: 2.3em;
+	display: block;
+	margin: .4em auto;
+}
