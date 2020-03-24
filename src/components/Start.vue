@@ -1,10 +1,10 @@
 <template>
     <div>
         <div id="buttons">
-            <button v-on:click="insert">Insert</button>
-            <button>Remove</button>
-            <button v-on:click="display">Display</button>
-            <button>Update</button>
+            <button class="menuButton" v-on:click="insert">Insert</button>
+            <button class="menuButton">Remove</button>
+            <button class="menuButton" v-on:click="display">Display</button>
+            <button class="menuButton">Update</button>
         </div>
 
         <div v-if="modalToShow==='insert'">

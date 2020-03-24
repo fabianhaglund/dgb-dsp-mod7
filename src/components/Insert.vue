@@ -13,7 +13,7 @@
         <p>Supplier ID</p>
         <input v-model="supplierId"/>
 
-        <button class="submitButton" v-on:click="insertProduct">Confirm</button>
+        <button class="actionButton" v-on:click="insertProduct">Confirm</button>
 
 
     </div>

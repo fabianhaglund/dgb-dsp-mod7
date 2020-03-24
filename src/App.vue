@@ -1,38 +1,47 @@
 <template>
   <div id="app">
-    <Start/>
+    <h2>MongoDB demo</h2>
+    <h4>Select action below</h4>
+    <Start />
   </div>
 </template>
 
 <script>
+import Start from "./components/Start.vue";
 
-  import Start from './components/Start.vue'
-
-  export default {
-    name: 'App',
-    components: {
-      Start
-    }
+export default {
+  name: "App",
+  components: {
+    Start
   }
+};
 </script>
 
 <style>
 
-  #app{
-    padding: 40px;
-  }
+#app {
+  font-family: 'Courier New', Courier, monospace;
+  padding: 40px;
+}
 
-  button {
-    margin: 20px; 
-    padding: 10px; 
-    font-family: 'Courier New', Courier, monospace;
-    background-color: paleturquoise ;
-    font-size: 24px;
-  }
+h2 h4 {
+  padding: 10px; 
+  margin: 20px; 
+}
 
-  .submitButton {
-    font-size: 16px;
-    background-color: lightgray;
-  }
+.menuButton{
+  margin: 20px;
+  padding: 10px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: white;
+  font-size: 24px;
+}
 
+.actionButton {
+  margin: 20px;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  background-color: lightgray;
+}
 </style>
