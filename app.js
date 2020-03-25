@@ -116,26 +116,25 @@ client.connect(err => {
 
     //DELETE : Products
     socket.on("deleteProduct", function({ productId }) {
-      const products = database.collection("Product");
-      const productSupplier = database.collection("ProductSupplier");
+        const productSupplier = database.collection("ProductSupplier");
+        const products = database.collection("Product");
 
-      products.deleteOne({ productId: ObjectID(productId) }, err => {
-        if (err) {
-          socket.emit("responseDeleteProduct", { success: false });
-        } else {
-          // -- Since there's no "cascade delete" in a MongoDB database, we need to handle that ourselves
-          productSupplier.deleteMany(
-            { productId: ObjectID(productId) },
-            err => {
-              if (err) {
-                socket.emit("responseDeleteProduct", { success: false });
-              } else {
-                socket.emit("responseDeleteProduct", { success: true });
-              }
+        let res = await products.deleteOne({productId: ObjectID(productId)});
+        if (res.result.ok && res.result.n && res.result.n > 0) {
+            // -- Since there's no "cascade delete" in a MongoDB database, we need to handle that ourselves
+            res = await productSupplier.deleteMany({productId: ObjectID(productId)});      
+            if (res.result.ok) {
+                socket.emit("responseDeleteProduct", {success: true});
+                console.log(res.result);
+            } else {
+                socket.emit("responseDeleteProduct", {success: false});
+                console.warn(res.result);
             }
-          );
+        } else {
+            //No supplier found, or no succesful message sent
+            socket.emit("responseDeleteProduct", {success: false});
+            console.warn(res.result);
         }
-      });
     });
 
 
@@ -181,21 +180,19 @@ client.connect(err => {
         const products = database.collection("Product");
 
         let res = await supplier.deleteOne({supplierId: ObjectID(supplierId)});
-        console.log(supplierId);
-        console.log(ObjectID(supplierId));
         if (res.result.ok && res.result.n && res.result.n > 0) {
             // -- Since there's no "cascade delete" in a MongoDB database, we need to handle that ourselves
             // -- Gets a bit tricky here since it's technically two degrees of indirection
             //Finds all products linked to our supplier, and deletes them
             let productsToDelete = [];
-            await productSupplier.find({supplierId: supplierId}).forEach((document) => {
+            await productSupplier.find({supplierId: ObjectID(supplierId)}).forEach((document) => {
                 productsToDelete.push(document.productId);
             });
             res = await products.deleteMany({productId: {$in: productsToDelete}});
             if (res.result.ok) {
                 if (res.deletedCount && res.deletedCount > 0) {
                     //Then, actually delete the link between product and supplier in that table
-                    res = await productSupplier.deleteMany({supplierId: supplierId});      
+                    res = await productSupplier.deleteMany({supplierId: ObjectID(supplierId)});      
                     if (res.result.ok) {
                         socket.emit("responseDeleteSupplier", {success: true});
                         console.log(res.result);
