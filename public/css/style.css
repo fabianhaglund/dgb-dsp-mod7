@@ -1,28 +1,104 @@
 header {
+    font-family: Futura;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    margin: 30px;
 	background-color: rgb(125, 124, 154);
 }
 
+body {
+    display: flex; 
+    justify-content: center;
+    font-family: Futura;
+}
+
 button {
-    background-color: rgb(63, 41, 144);
-    color: white;
+    background-color:rgb(83, 198, 140);
+    height: 75px; 
+    width: 150px;
+    border: white;
+    border-radius: 10px;
+    font-weight: 500;
 }
 
 button:not([disabled]):hover {
     background-color: rgb(125, 124, 154);
 }
 
-.submit-button {
-	font-size: 2.3em;
-	display: block;
-	margin: .4em auto;
-}
-
-.specification {
-    margin-top: -0.6em;
-    margin-bottom: 2em;
-}
-
 #inputBox {
-    position: fixed;
     margin: 00px 0px 0px 20px;
 }
+
+.inputFields {
+    display: flex; 
+    flex-direction: row;
+}
+
+h4 {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+h6 {
+    display: flex; 
+    justify-content: center;
+    margin: 2px;
+}
+
+.inputFieldCategory {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: top;
+    font-size: 14px;
+    padding: 20px;
+    width: 150px;
+}
+
+.allOperators {
+    display: flex; 
+    flex-direction: row;
+}
+
+.collectionOperators {
+    display: flex; 
+    flex-direction: column;
+    padding: 20px;
+}
+
+.submit-button {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    display: block;
+    font-size: 24px;
+    margin: 4px;
+}
+
+  .submit-button .specification {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px 0;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 2;
+  }
+  
+  .submit-button:hover .specification {
+    visibility: visible;
+    font-size: 14px;
+    margin: 4px;
+    padding: 6px;
+  }
+
+  .specification {
+      font-size: 4px;
+  }
+
