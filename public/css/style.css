@@ -16,3 +16,8 @@ button:not([disabled]):hover {
 	display: block;
 	margin: .4em auto;
 }
+
+.specification {
+    margin-top: -0.6em;
+    margin-bottom: 2em;
+}

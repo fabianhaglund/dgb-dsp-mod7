@@ -26,35 +26,33 @@
                 </section>
 
                 <div style="text-align: center;">
-		  <p>All data with suffix Id must exist in the db</p>
+		  <p>All data with suffix "Id" must exist in the db</p>
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">CREATE product</button>
-                    <p>productCode, quantity, price, supplierId</p>
+                    <p class="specification">productCode, quantity, price, supplierId</p>
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">READ products</button>
                     <button type="button" class="submit-button" v-on:click="updateProduct()">UPDATE product</button>
-                    <p>productId, productCode, quantity, price, supplierId</p>
+                    <p class="specification">productId, productCode, quantity, price, supplierId</p>
                     <button type="button" class="submit-button" v-on:click="deleteProduct()">DELETE product</button>
-                    <p>productId</p>
-                    <br/>
+                    <p class="specification">productId</p>
 
                     <button type="button" class="submit-button" v-on:click="createNewOrder()">CREATE order</button>
-                    <p>productId, quantity</p>
+                    <p class="specification">productId, quantity</p>
 
                     <button type="button" class="submit-button" v-on:click="updateOrder()">UPDATE order</button>
-                    <p>orderId, productId, quantity</p>
+                    <p class="specification">orderId, productId, quantity</p>
                     <button type="button" class="submit-button" v-on:click="displayOrders()">READ orders</button>
 
 		    <button type="button" class="submit-button" v-on:click="deleteOrder()">DELETE order</button>
-		    <p>orderId</p>
-                    <br/>
+		    <p class="specification">orderId</p>
 
                     <button type="button" class="submit-button" v-on:click="submitNewSupplier()">CREATE supplier</button>
 		    
                     <button type="button" class="submit-button" v-on:click="displayAllSuppliers()">READ supplier</button>
 
                     <button type="button" class="submit-button" v-on:click="updateSupplier()">UPDATE supplier</button>
-                    <p>supplierId, supplierName, supplierPhone</p>
+                    <p class="specification">supplierId, supplierName, supplierPhone</p>
                     <button type="button" class="submit-button" v-on:click="deleteSupplier()">DELETE supplier</button>
-                    <p>supplierId</p>
+                    <p class="specification">supplierId</p>
                     
                 </div>
 
