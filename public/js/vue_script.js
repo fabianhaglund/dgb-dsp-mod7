@@ -15,13 +15,18 @@ const vm = new Vue({
         supplierName: "",
         supplierPhone: "",
         orderId: "",
+        responseData: ""
     },
     mounted: function() {
         socket.on('responseGetProducts', function ({success, returnValue}) {
-            console.log(JSON.stringify(returnValue));
+            let returnData = JSON.stringify(returnValue);
+            vm.responseData = returnData;
+            console.log(returnData);
         });
         socket.on('responseGetSuppliers', function({success, returnSupplier}) {
-                console.log(JSON.stringify(returnSupplier));
+                let returnData = JSON.stringify(returnSupplier);
+                vm.responseData = returnData;
+		        console.log(returnData);
         });
         socket.on('responseDeleteProduct', function ({success}) {
             if (!success) {
@@ -46,7 +51,9 @@ const vm = new Vue({
         });
 	    socket.on('responseGetOrders', function ({success, returnValue}) {
 	        if (success) {
-		        console.log(JSON.stringify(returnValue));
+                let returnData = JSON.stringify(returnValue);
+                vm.responseData = returnData;
+		        console.log(returnData);
 	        } else {
 		        console.log("Something went wrong in socket.emit('getOrders')");
 	        }

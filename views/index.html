@@ -106,10 +106,16 @@
                             DELETE supplier
                             <span class="specification">supplierId</span>
                         </button>
-            
+        
                     </div>
-                    
+
                 </div>
+
+                <h4>RESPONSE DATA</h4>
+                <h6>For read operations only</h6>
+                <div id="responseData" v-bind="responseData">
+                    {{ responseData }}
+                </div> 
 
             </form>
 

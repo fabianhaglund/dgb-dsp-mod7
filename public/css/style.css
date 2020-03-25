@@ -102,3 +102,10 @@ h6 {
       font-size: 4px;
   }
 
+  #responseData {
+      display: flex; 
+      align-items: center;
+      font-size: 8px;
+      width: 100px;
+  }
+
