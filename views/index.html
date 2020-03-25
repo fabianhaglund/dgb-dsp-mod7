@@ -26,6 +26,18 @@
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">Display all products</button>
                 </div>
             </form>
+            <form id="delete-form">
+                <section class="user-data-form-basic">
+                    Supplier ID to delete: <input v-model="supplierIdToDelete" type="text" placeholder="Supplier ID"><br/>
+                    Product ID to delete: <input v-model="productIdToDelete" type="text" placeholder="Product ID">
+                </section>
+                <div style="text-align: center;">
+                    <button type="button" class="submit-button" v-on:click="deleteSupplier()">Delete a supplier</button>
+                </div>
+                <div style="text-align: center;">
+                    <button type="button" class="submit-button" v-on:click="deleteProduct()">Delete a product</button>
+                </div>
+            </form>
         </main>
     </body>
 </html>

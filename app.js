@@ -138,38 +138,49 @@ client.connect(err => {
 
 
         //DELETE : Supplier
-        socket.on("deleteSupplier", function({supplierId}) {
+        socket.on("deleteSupplier", async function({supplierId}) {
             const supplier = database.collection("Supplier");
             const productSupplier = database.collection("ProductSupplier");
             const products = database.collection("Product");
 
-            supplier.deleteOne({supplierId: ObjectID(supplierId)}, async (err) => {
-                if (err) {
-                    socket.emit("responseDeleteSupplier", {success: false});
-                } else {
-                    // -- Since there's no "cascade delete" in a MongoDB database, we need to handle that ourselves
-                    // -- Gets a bit tricky here since it's technically two degrees of indirection
-                    //Finds all products linked to our supplier, and deletes them
-                    let productsToDelete = [];
-                    await productSupplier.find({supplierId: ObjectID(supplierId)}).forEach((document) => {
-                        productsToDelete.push(document.productId);
-                    });
-                    products.deleteMany({productId: {$in: productsToDelete}}, (err) => {
-                        if (err) {
-                            socket.emit("responseDeleteSupplier", {success: false});
+            let res = await supplier.deleteOne({supplierId: supplierId});
+            console.log(supplierId);
+            console.log(ObjectID(supplierId));
+            if (res.result.ok && res.result.n && res.n > 0) {
+                // -- Since there's no "cascade delete" in a MongoDB database, we need to handle that ourselves
+                // -- Gets a bit tricky here since it's technically two degrees of indirection
+                //Finds all products linked to our supplier, and deletes them
+                let productsToDelete = [];
+                await productSupplier.find({supplierId: supplierId}).forEach((document) => {
+                    productsToDelete.push(document.productId);
+                });
+                res = await products.deleteMany({productId: {$in: productsToDelete}});
+                if (res.result.ok) {
+                    if (res.deletedCount && res.deletedCount > 0) {
+                        //Then, actually delete the link between product and supplier in that table
+                        res = await productSupplier.deleteMany({supplierId: supplierId});      
+                        if (res.result.ok) {
+                            socket.emit("responseDeleteSupplier", {success: true});
+                            console.log(res.result);
                         } else {
-                            //Then, actually delete the link between product and supplier in that table
-                            productSupplier.deleteMany({supplierId: ObjectID(supplierId)}, (err) => {        
-                                if (err) {
-                                    socket.emit("responseDeleteSupplier", {success: false});
-                                } else {
-                                    socket.emit("responseDeleteSupplier", {success: true});
-                                }
-                            });
+                            socket.emit("responseDeleteSupplier", {success: false});
+                            console.warn(res.result);
                         }
-                    });
+                    } else {
+                        //No cascade found, we're done here
+                        socket.emit("responseDeleteSupplier", {success: true});
+                        console.log(res.result);
+                    }
+                } else {
+                    socket.emit("responseDeleteSupplier", {success: false});
+                    console.warn("No cascade found?\n");
+                    console.warn(res.result);
                 }
-            });
+            } else {
+                //No supplier found, or no succesful message sent
+                socket.emit("responseDeleteSupplier", {success: false});
+                console.warn(res.result);
+            }
         });
     });
 
