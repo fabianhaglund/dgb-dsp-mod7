@@ -223,18 +223,41 @@ client.connect(err => {
 
     //CREATE : new orders
     socket.on("createNewOrder", function({ productId, quantity }) {
-      const orders = database.collection("Orders");
-      const orderId = getUID();
+        console.log("socket.on createNewOrder");
+        const orders = database.collection("Orders");
+        const orderId = getUID();
+        productId = ObjectID(productId);
 
-      orders.insertOne({ orderId, productId, quantity }, err => {
-        if (err) {
-          socket.emit("responseCreateNewOrder", { success: false });
-        } else {
-          socket.emit("responseCreateNewOrder", { success: true, orderId });
-        }
-      });
+        orders.insertOne({ orderId, productId, quantity }, err => {
+            if (err) {
+                socket.emit("responseCreateNewOrder", { success: false });
+            } else {
+                socket.emit("responseCreateNewOrder", { success: true, orderId });
+            }
+        });
     });
+
+    //UPDATE: update orders 
+    socket.on("updateOrder", function({ orderId, productId, quantity }){
+        console.log("socket.on updateOrder");
+        const orders = database.collection("Orders");
+        orderId = ObjectID(orderId);
+        productId = ObjectID(productId);
+        orders.updateOne (
+            { "orderId": orderId },
+            {
+                $set: {
+                    "orderId": orderId,
+                    "productId": productId, 
+                    "quantity": quantity
+                }
+            }
+        );
+    });
+
+
   });
+
 
   const server = http.listen(app.get("port"), function() {
     console.log("Server listening on port " + app.get("port"));
