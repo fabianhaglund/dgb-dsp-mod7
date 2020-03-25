@@ -115,7 +115,7 @@ client.connect(err => {
     });
 
     //DELETE : Products
-    socket.on("deleteProduct", function({ productId }) {
+    socket.on("deleteProduct", async function({ productId }) {
         const productSupplier = database.collection("ProductSupplier");
         const products = database.collection("Product");
 
