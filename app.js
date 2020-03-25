@@ -10,6 +10,8 @@ const io = require('socket.io')(http);
 const path = require('path');
 const fs = require('fs');
 
+const ObjectID = require('mongodb').ObjectID;
+
 // Pick arbitrary port for server
 const port = 3000;
 app.set('port', (process.env.PORT || port));
@@ -37,7 +39,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 //Utility function
 let highestUID = 1;
 function getUID () {
-    return highestUID++;
+    return ObjectID();
 }
 
 //Main function: once we connect to the mongo client, we start the server proper
@@ -75,12 +77,11 @@ client.connect(err => {
         });
 
         //GET : products
-        socket.on("getProducts", function() {
-            const products = database.collection("Product");
-
-            const ourString = JSON.stringify(products);
-
-            socket.emit("responseGetProducts", {success: true, ourString});
+        socket.on("getProducts", async function() {
+        const products = database.collection("Product");
+          let returnValue= {};
+          await products.find().forEach(element => returnValue[element._id] = element);
+          socket.emit("responseGetProducts", {success: true, returnValue});
         });
 
 

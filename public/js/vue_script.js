@@ -10,7 +10,11 @@ const vm = new Vue({
         productCode: "",
         quantity: 0,
         price: 0,
-        supplierId: ""
+        supplierId: "",
+
+        supplierName: "",
+        supplierPhone: "",
+
     },
     methods: {
         submitNewProduct: () => {
@@ -25,10 +29,19 @@ const vm = new Vue({
             return false;
         },
         displayAllProducts: () => {
-            socket.on('responseGetProducts', function ({success, ourString}) {
-                console.log(ourString);
+            socket.on('responseGetProducts', function ({success, returnValue}) {
+                console.log(JSON.stringify(returnValue));
             });
             socket.emit('getProducts');
+            return false;
+        },
+        submitNewSupplier: () =>{
+            let supplierData =
+            {
+                   supplierName: vm.name,
+                   supplierPhone: vm.phone        
+            };
+            socket.emit("putNewSupplier", supplierData);
             return false;
         }
     }
