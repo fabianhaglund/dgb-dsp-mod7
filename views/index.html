@@ -14,19 +14,21 @@
 			<header>DATABASE, DATABASE, LIVING IN THE DATABASE, WO-OH</header>
             <form id="user-data-form" v-on:submit="submitNewUser()">
 
+	      <div id="inputBox">
                 <section class="user-data-form-basic">
                     Product Code: <input v-model="productCode" type="text" placeholder="Product Code"><br/>
                     Product Quantity: <input v-model="quantity" type="number" placeholder="Product Quantity"><br/>
                     Product Price: <input v-model="price" type="number" placeholder="Product Price"><br/>
-		            Product ID: <input v-model="productId" type="text" placeholder="Product ID"><br/>
+		    Product ID: <input v-model="productId" type="text" placeholder="Product ID"><br/>
                     Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID"><br/>
                     Supplier Name: <input v-model="supplierName" type="text" placeholder="Supplier name"><br/>
                     Supplier phone: <input v-model="supplierPhone" type="text" placeholder="Supplier phone"><br/>
                     Order ID: <input v-model="orderId" type="text" placeholder="orderId"><br/>
                 </section>
+	      </div>
 
                 <div style="text-align: center;">
-		  <p>All data with suffix "Id" must exist in the db</p>
+		  <h4>Please note: All data with suffix "Id" must exist in the db</h4>
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">CREATE product</button>
                     <p class="specification">productCode, quantity, price, supplierId</p>
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">READ products</button>

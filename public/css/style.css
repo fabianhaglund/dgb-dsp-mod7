@@ -21,3 +21,8 @@ button:not([disabled]):hover {
     margin-top: -0.6em;
     margin-bottom: 2em;
 }
+
+#inputBox {
+    position: fixed;
+    margin: 00px 0px 0px 20px;
+}
