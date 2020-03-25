@@ -56,20 +56,20 @@ client.connect(err => {
         console.log("We're in");
 
         //PUT : new products
-        socket.on("putNewProduct", function({productCode, quantity, price, supplierId}) {
+        socket.on("createNewProduct", function({productCode, quantity, price, supplierId}) {
             const products = database.collection("Product");
             const productSupplier = database.collection("ProductSupplier");
             const productId = getUID();
 
             products.insertOne({productId, productCode, quantity, price}, (err) => {
                 if (err) {
-                    socket.emit("responsePutNewProduct", {success: false});
+                    socket.emit("responseCreateNewProduct", {success: false});
                 } else {
                     productSupplier.insertOne({productId, supplierId}, (err) => {
                         if (err) {
-                            socket.emit("responsePutNewProduct", {success: false});
+                            socket.emit("responseCreateNewProduct", {success: false});
                         } else {
-                            socket.emit("responsePutNewProduct", {success: true, productId});
+                            socket.emit("responseCreateNewProduct", {success: true, productId});
                         }
                     });
                 }
@@ -86,30 +86,30 @@ client.connect(err => {
 
 
         //PUT : new suppliers
-        socket.on("putNewSupplier", function({name, phone}) {
+        socket.on("createNewSupplier", function({name, phone}) {
             const suppliers = database.collection("Supplier");
             const supplierId = getUID();
 
             suppliers.insertOne({supplierId, name, phone}, (err) => {
                 if (err) {
-                    socket.emit("responsePutNewSupplier", {success: false});
+                    socket.emit("responseCreateNewSupplier", {success: false});
                 } else {
-                    socket.emit("responsePutNewSupplier", {success: true, supplierId});
+                    socket.emit("responseCreateNewSupplier", {success: true, supplierId});
                 }
             });
         });
 
 
         //PUT : new orders
-        socket.on("putNewOrder", function({productId, quantity}) {
+        socket.on("createNewOrder", function({productId, quantity}) {
             const orders = database.collection("Orders");
             const orderId = getUID();
 
             orders.insertOne({orderId, productId, quantity}, (err) => {
                 if (err) {
-                    socket.emit("responsePutNewOrder", {success: false});
+                    socket.emit("responseCreateNewOrder", {success: false});
                 } else {
-                    socket.emit("responsePutNewOrder", {success: true, orderId});
+                    socket.emit("responseCreateNewOrder", {success: true, orderId});
                 }
             });
         });

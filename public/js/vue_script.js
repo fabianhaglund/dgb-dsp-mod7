@@ -17,7 +17,7 @@ const vm = new Vue({
 
     },
     methods: {
-        submitNewProduct: () => {
+        createNewProduct: () => {
             let productData = 
                 {
                     productCode: vm.productCode, 
@@ -25,7 +25,7 @@ const vm = new Vue({
                     price: vm.price,
                     supplierId: vm.supplierId
                 };
-            socket.emit('putNewProduct', productData);
+            socket.emit('createNewProduct', productData);
             return false;
         },
         displayAllProducts: () => {
@@ -41,7 +41,7 @@ const vm = new Vue({
                    supplierName: vm.name,
                    supplierPhone: vm.phone        
             };
-            socket.emit("putNewSupplier", supplierData);
+            socket.emit("createNewSupplier", supplierData);
             return false;
         }
     }
