@@ -265,6 +265,21 @@ client.connect(err => {
 	  await orders.find().forEach(element => (returnValue[element._id] = element));
 	  socket.emit("responseGetOrders", { success: true, returnValue }); 
       });
+
+    //DELETE : Order
+    socket.on("deleteOrder", async function({orderId}) {
+	const order = database.collection("Orders");
+	let res = await order.deleteOne({orderId: ObjectID(orderId)});
+	if (res.result.ok && res.result.n && res.result.n > 0) {
+	    socket.emit("responseDeleteOrder", {success: true});
+            console.log(res.result);
+	}
+	else {
+	    //Something went wrong
+            socket.emit("responseDeleteOrder", {success: false});
+            console.warn(res.result);
+	}
+    });
   });
 
 

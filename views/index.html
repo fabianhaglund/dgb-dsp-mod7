@@ -26,6 +26,7 @@
                 </section>
 
                 <div style="text-align: center;">
+		  <p>All data with suffix Id must exist in the db</p>
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">CREATE product</button>
                     <p>productCode, quantity, price, supplierId</p>
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">READ products</button>
@@ -42,14 +43,12 @@
                     <p>orderId, productId, quantity</p>
                     <button type="button" class="submit-button" v-on:click="displayOrders()">READ orders</button>
 
-                    <!-- TODO: DELETE order (@Nicke) -->
-
+		    <button type="button" class="submit-button" v-on:click="deleteOrder()">DELETE order</button>
+		    <p>orderId</p>
                     <br/>
 
-                    <!-- TODO: CREATE supplier  (@Benny) -->
-                     <button type="button" class="submit-button" v-on:click="submitNewSupplier()">CREATE supplier</button>
-
-                    <!-- TODO: READ supplier (@Benny) -->
+                    <button type="button" class="submit-button" v-on:click="submitNewSupplier()">CREATE supplier</button>
+		    
                     <button type="button" class="submit-button" v-on:click="displayAllSuppliers()">READ supplier</button>
 
                     <button type="button" class="submit-button" v-on:click="updateSupplier()">UPDATE supplier</button>
