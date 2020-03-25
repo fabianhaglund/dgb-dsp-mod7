@@ -180,10 +180,10 @@ client.connect(err => {
         const productSupplier = database.collection("ProductSupplier");
         const products = database.collection("Product");
 
-        let res = await supplier.deleteOne({supplierId: supplierId});
+        let res = await supplier.deleteOne({supplierId: ObjectID(supplierId)});
         console.log(supplierId);
         console.log(ObjectID(supplierId));
-        if (res.result.ok && res.result.n && res.n > 0) {
+        if (res.result.ok && res.result.n && res.result.n > 0) {
             // -- Since there's no "cascade delete" in a MongoDB database, we need to handle that ourselves
             // -- Gets a bit tricky here since it's technically two degrees of indirection
             //Finds all products linked to our supplier, and deletes them
@@ -210,7 +210,6 @@ client.connect(err => {
                 }
             } else {
                 socket.emit("responseDeleteSupplier", {success: false});
-                console.warn("No cascade found?\n");
                 console.warn(res.result);
             }
         } else {
@@ -256,6 +255,13 @@ client.connect(err => {
     });
 
 
+      //READ: orders
+      socket.on("getOrders", async function() {
+	  const orders = database.collection("Orders");
+	  let returnValue = {};
+	  await orders.find().forEach(element => (returnValue[element._id] = element));
+	  socket.emit("responseGetOrders", { success: true, returnValue }); 
+      });
   });
 
 

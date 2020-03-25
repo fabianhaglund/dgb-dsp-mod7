@@ -13,29 +13,36 @@
         <main id="everything">
 			<header>DATABASE, DATABASE, LIVING IN THE DATABASE, WO-OH</header>
             <form id="user-data-form" v-on:submit="submitNewUser()">
+
                 <section class="user-data-form-basic">
                     Product Code: <input v-model="productCode" type="text" placeholder="Product Code"><br/>
-                    Quantity: <input v-model="quantity" type="number" placeholder="Quantity"><br/>
-                    Price: <input v-model="price" type="number" placeholder="Price"><br/>
+                    Product Quantity: <input v-model="quantity" type="number" placeholder="Product Quantity"><br/>
+                    Product Price: <input v-model="price" type="number" placeholder="Product Price"><br/>
+		            Product ID: <input v-model="productId" type="text" placeholder="Product ID"><br/>
                     Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID"><br/>
                     Supplier Name: <input v-model="supplierName" type="text" placeholder="Supplier name"><br/>
                     Supplier phone: <input v-model="supplierPhone" type="text" placeholder="Supplier phone"><br/>
-                    Product ID: <input v-model="productId" type="text" placeholder="productId"><br/>
                     Order ID: <input v-model="orderId" type="text" placeholder="orderId"><br/>
                 </section>
+
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">Submit new product</button>
                     <button type="button" class="submit-button" v-on:click="createNewOrder()">Create new order</button>
                 </div>
+
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">Display all products</button>
                 </div>
-		<div style="text-align: center;">
-                  <button type="button" class="submit-button" v-on:click="updateProduct()">Update product by ID</button>
-                  <button type="button" class="submit-button" v-on:click="updateSupplier()">Update supplier by ID</button>
-                  <button type="button" class="submit-button" v-on:click="updateOrder()">Update order by orderId</button>
+
+		        <div style="text-align: center;">
+                    <button type="button" class="submit-button" v-on:click="updateProduct()">Update product by ID</button>
+                    <button type="button" class="submit-button" v-on:click="updateSupplier()">Update supplier by ID</button>
+                    <button type="button" class="submit-button" v-on:click="updateOrder()">Update order by orderId</button>
+		            <button type="button" class="submit-button" v-on:click="displayOrders()">Display all orders</button>
                 </div>
+
             </form>
+
             <form id="delete-form">
                 <section class="user-data-form-basic">
                     Supplier ID to delete: <input v-model="supplierIdToDelete" type="text" placeholder="Supplier ID"><br/>
@@ -48,6 +55,7 @@
                     <button type="button" class="submit-button" v-on:click="deleteProduct()">Delete a product</button>
                 </div>
             </form>
+            
         </main>
     </body>
 </html>
