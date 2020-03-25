@@ -4,6 +4,7 @@ header {
 
 button {
     background-color: rgb(63, 41, 144);
+    color: white;
 }
 
 button:not([disabled]):hover {
