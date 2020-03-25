@@ -17,13 +17,20 @@
                     Product Code: <input v-model="productCode" type="text" placeholder="Product Code"><br/>
                     Quantity: <input v-model="quantity" type="number" placeholder="Quantity"><br/>
                     Price: <input v-model="price" type="number" placeholder="Price"><br/>
-                    Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID">
+                    Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID"><br/>
+                    Supplier Name: <input v-model="supplierName" type="text" placeholder="Supplier name"><br/>
+                    Supplier phone: <input v-model="supplierPhone" type="text" placeholder="Supplier phone"><br/>
+                    ID: <input v-model="id" type="text" placeholder="ID"><br/>
                 </section>
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">Submit new product</button>
                 </div>
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">Display all products</button>
+                </div>
+		<div style="text-align: center;">
+                  <button type="button" class="submit-button" v-on:click="updateProduct()">Update product by ID</button>
+                  <button type="button" class="submit-button" v-on:click="updateSupplier()">Update supplier by ID</button>
                 </div>
             </form>
             <form id="delete-form">

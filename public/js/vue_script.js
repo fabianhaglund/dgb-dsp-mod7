@@ -1,7 +1,7 @@
 /**
  * Instantiates in Strict mode, and opens a socket we'll need later
  */
-'use strict';
+"use strict";
 const socket = io();
 
 const vm = new Vue({
@@ -62,6 +62,26 @@ const vm = new Vue({
             socket.emit("createNewSupplier", supplierData);
             return false;
         },
+        updateProduct: () => {
+            let productData = {
+                productCode: vm.productCode,
+                quantity: vm.quantity,
+                price: vm.price,
+                supplierId: vm.supplierId
+            };
+            let id = vm.id;
+            socket.emit("updateProduct", { id, productData });
+        },
+        updateSupplier: () => {
+            console.log("socket.emit updateSupplier")
+            let supplierId = vm.supplierId;
+            let supplierName = vm.supplierName; 
+            let supplierPhone = vm.supplierPhone;
+            console.log(supplierId);
+            console.log(supplierName);
+            console.log(supplierPhone);
+            socket.emit("updateSupplier", { supplierId, supplierName, supplierPhone });
+        },
         deleteSupplier: () => {
             if (vm.supplierIdToDelete !== "") {
                 socket.emit("deleteSupplier", {supplierId: vm.supplierIdToDelete});
@@ -75,4 +95,4 @@ const vm = new Vue({
             return false;
         }
     }
-})
+});
