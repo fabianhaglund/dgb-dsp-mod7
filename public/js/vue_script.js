@@ -15,9 +15,6 @@ const vm = new Vue({
         supplierName: "",
         supplierPhone: "",
 
-        supplierIdToDelete: "",
-        productIdToDelete: "",
-
         productId: "",
         orderId: ""
     },
@@ -87,8 +84,8 @@ const vm = new Vue({
                 price: vm.price,
                 supplierId: vm.supplierId
             };
-            let id = vm.productId;
-            socket.emit("updateProduct", { id, productData });
+            let productId = vm.productId;
+            socket.emit("updateProduct", { productId, productData });
         },
         updateSupplier: () => {
             console.log("socket.emit updateSupplier")
@@ -108,18 +105,18 @@ const vm = new Vue({
             socket.emit("updateOrder", { orderId, productId, quantity });
         },
         deleteSupplier: () => {
-            if (vm.supplierIdToDelete !== "") {
-                socket.emit("deleteSupplier", {supplierId: vm.supplierIdToDelete});
+            if (vm.supplierId !== "") {
+                socket.emit("deleteSupplier", {supplierId: vm.supplierId});
             }
             return false;
         },
         deleteProduct: () => {
-            if (vm.productIdToDelete !== "") {
-                socket.emit("deleteProduct", {productID: vm.productIdToDelete});
+            if (vm.productId !== "") {
+                socket.emit("deleteProduct", {productID: vm.productId});
             }
             return false;
         },
-	displayOrders: () => {
+	    displayOrders: () => {
             socket.emit('getOrders');
             return false;
         },

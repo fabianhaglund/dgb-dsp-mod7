@@ -97,12 +97,12 @@ client.connect(err => {
     });
 
     //UPDATE: Products
-    socket.on("updateProduct", function({ id, productData }) {
+    socket.on("updateProduct", function({ productId, productData }) {
       console.log("updateProduct");
-      var objectId = new ObjectID(id);
+      productId = new ObjectID(productId);
       const products = database.collection("Product");
       products.updateOne(
-        { _id: objectId },
+        { productId: productId },
         {
           $set: {
             productCode: productData.productCode,
@@ -158,14 +158,12 @@ client.connect(err => {
     //UPDATE: update suppliers
     socket.on("updateSupplier", function({ supplierId, supplierName, supplierPhone }) {
       console.log("updateSupplier");
-      var objectId = new ObjectID(supplierId);
+      supplierId = new ObjectID(supplierId);
       const suppliers = database.collection("Supplier");
       suppliers.updateOne(
-        { _id: objectId },
+        { supplierId: supplierId },
         {
           $set: {
-            _id: objectId,
-            supplierId: objectId,
             name: supplierName,
             phone: supplierPhone
           }
