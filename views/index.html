@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Speed Date</title>
+        <title>Mongo DB</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="./css/style.css">
@@ -18,12 +18,16 @@
                     Quantity: <input v-model="quantity" type="number" placeholder="Quantity"><br/>
                     Price: <input v-model="price" type="number" placeholder="Price"><br/>
                     Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID">
+		    ID: <input v-model="id" type="text" placeholder="ID">
                 </section>
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">Submit new product</button>
                 </div>
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="displayAllProducts()">Display all products</button>
+                </div>
+		<div style="text-align: center;">
+                  <button type="button" class="submit-button" v-on:click="updateProduct()">Update product by ID</button>
                 </div>
             </form>
         </main>

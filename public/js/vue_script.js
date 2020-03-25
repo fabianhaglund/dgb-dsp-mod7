@@ -11,6 +11,7 @@ const vm = new Vue({
         quantity: 0,
         price: 0,
         supplierId: "",
+	id: "",
 
         supplierName: "",
         supplierPhone: "",
@@ -43,6 +44,17 @@ const vm = new Vue({
             };
             socket.emit("createNewSupplier", supplierData);
             return false;
-        }
+        },
+	updateProduct: () => {
+	    let productData = 
+                {
+                    productCode: vm.productCode, 
+                    quantity: vm.quantity,
+                    price: vm.price,
+                    supplierId: vm.supplierId
+                };
+	    let id = vm.id;
+	    socket.emit('updateProduct', { id, productData });
+	}
     }
 })

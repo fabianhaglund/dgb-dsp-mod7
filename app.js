@@ -113,6 +113,20 @@ client.connect(err => {
                 }
             });
         });
+
+	socket.on("updateProduct", function({id, productData }) {
+	    console.log("updateProduct");
+	    var objectId = new ObjectID(id);
+	    const products = database.collection("Product");
+	    products.updateOne(
+		{"_id": objectId}, {$set: {
+		"productCode": productData.productCode,
+		"quantity": productData.quantity,
+		"price": productData.price,
+		"supplierId": productData.supplierId,
+		}}
+	    );
+	});
     });
 
     const server = http.listen(app.get('port'), function() {
