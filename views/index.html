@@ -74,14 +74,14 @@
                             CREATE order
                             <span class="specification">productId, quantity</span>
                         </button>
+
+                        <button type="button" class="submit-button" v-on:click="readOrders()">
+                            READ orders
+                        </button>
    
                         <button type="button" class="submit-button" v-on:click="updateOrder()">
                             UPDATE order
                             <span class="specification">orderId, productId, quantity</span>
-                        </button>
-
-                        <button type="button" class="submit-button" v-on:click="readOrders()">
-                            READ orders
                         </button>
 
                         <button type="button" class="submit-button" v-on:click="deleteOrder()">
