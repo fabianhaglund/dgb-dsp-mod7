@@ -49,12 +49,12 @@
                 <div class="allOperators">
 
                     <div class="collectionOperators">
-                        <button type="button" class="submit-button" v-on:click="createNewProduct()">
+                        <button type="button" class="submit-button" v-on:click="createProduct()">
                             CREATE product
                             <p class="specification">productCode, quantity, price, supplierId</p>
                         </button>
 
-                        <button type="button" class="submit-button" v-on:click="displayAllProducts()">
+                        <button type="button" class="submit-button" v-on:click="readProducts()">
                             READ products
                         </button>
 
@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="collectionOperators">
-                        <button type="button" class="submit-button" v-on:click="createNewOrder()">
+                        <button type="button" class="submit-button" v-on:click="createOrder()">
                             CREATE order
                             <span class="specification">productId, quantity</span>
                         </button>
@@ -80,7 +80,7 @@
                             <span class="specification">orderId, productId, quantity</span>
                         </button>
 
-                        <button type="button" class="submit-button" v-on:click="displayOrders()">
+                        <button type="button" class="submit-button" v-on:click="readOrders()">
                             READ orders
                         </button>
 
@@ -92,9 +92,9 @@
                     </div>
 
                     <div class="collectionOperators">
-                        <button type="button" class="submit-button" v-on:click="submitNewSupplier()">CREATE supplier</button>
+                        <button type="button" class="submit-button" v-on:click="createSupplier()">CREATE supplier</button>
 		    
-                        <button type="button" class="submit-button" v-on:click="displayAllSuppliers()">READ supplier</button>
+                        <button type="button" class="submit-button" v-on:click="readSuppliers()">READ supplier</button>
     
                         <button type="button" class="submit-button" v-on:click="updateSupplier()">
                             UPDATE supplier

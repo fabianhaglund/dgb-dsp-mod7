@@ -54,8 +54,11 @@ const vm = new Vue({
         });
     },
     methods: {
-        createNewProduct: () => {
-            console.log("socket.emit createNewProduct");
+
+        /*  PRODUCT   CLIENT LOGIC   */
+
+        createProduct: () => {
+            console.log("socket.emit createProduct");
             let productData = 
                 {
                     productCode: vm.productCode, 
@@ -66,31 +69,10 @@ const vm = new Vue({
             socket.emit('createNewProduct', productData);
             return false;
         },
-        createNewOrder: () => {
-            console.log("createNewOrder");
-            let productId = vm.productId;
-            let quantity = vm.quantity; 
-            socket.emit("createNewOrder", { productId, quantity });
-        },
-        displayAllProducts: () => {
+        readProducts: () => {
+            console.log("readProducts");
             socket.emit('getProducts');
             return false;
-        },
-        submitNewSupplier: () =>{
-            let supplierData =
-            {
-                   name: vm.supplierName,
-                   phone: vm.supplierPhone        
-            };
-            socket.emit("createNewSupplier", supplierData);
-            socket.on("responseCreateNewSupplier", function({success, supplierId}){
-                console.log("New supplier has id: " + supplierId);
-            });
-            return false;
-        },
-         displayAllSuppliers: () => {
-           socket.emit('getSuppliers');
-           return false; 
         },
         updateProduct: () => {
             console.log("updateProduct");
@@ -103,6 +85,60 @@ const vm = new Vue({
             let productId = vm.productId;
             socket.emit("updateProduct", { productId, productData });
         },
+        deleteProduct: () => {
+            if (vm.productId !== "") {
+                socket.emit("deleteProduct", {productID: vm.productId});
+            }
+            return false;
+        },
+
+        /*  ORDER   CLIENT LOGIC   */
+
+        createOrder: () => {
+            console.log("createOrder");
+            let productId = vm.productId;
+            let quantity = vm.quantity; 
+            socket.emit("createNewOrder", { productId, quantity });
+        },
+        readOrders: () => {
+            console.log("readOrders")M
+            socket.emit('getOrders');
+            return false;
+        },
+        updateOrder: () => {
+            console.log("socket.emit updateOrder");
+            let orderId = vm.orderId;
+            let productId = vm.productId;
+            let quantity = vm.quantity;
+            socket.emit("updateOrder", { orderId, productId, quantity });
+        },
+        deleteOrder: () => {
+            if (vm.orderId !== "") {
+                socket.emit("deleteOrder", {orderId: vm.orderId});
+            }
+            return false;
+        },
+
+        /*  ORDER   CLIENT LOGIC   */
+
+        createSupplier: () => {
+            console.log("createSupplier");
+            let supplierData =
+            {
+                   name: vm.supplierName,
+                   phone: vm.supplierPhone        
+            };
+            socket.emit("createNewSupplier", supplierData);
+            socket.on("responseCreateNewSupplier", function({success, supplierId}){
+                console.log("New supplier has id: " + supplierId);
+            });
+            return false;
+        },
+        readSuppliers: () => {
+           console.log("readSuppliers");
+           socket.emit('getSuppliers');
+           return false; 
+        },
         updateSupplier: () => {
             console.log("socket.emit updateSupplier")
             let supplierId = vm.supplierId;
@@ -113,32 +149,9 @@ const vm = new Vue({
             console.log(supplierPhone);
             socket.emit("updateSupplier", { supplierId, supplierName, supplierPhone });
         },
-        updateOrder: () => {
-            console.log("socket.emit updateOrder");
-            let orderId = vm.orderId;
-            let productId = vm.productId;
-            let quantity = vm.quantity;
-            socket.emit("updateOrder", { orderId, productId, quantity });
-        },
         deleteSupplier: () => {
             if (vm.supplierId !== "") {
                 socket.emit("deleteSupplier", {supplierId: vm.supplierId});
-            }
-            return false;
-        },
-        deleteProduct: () => {
-            if (vm.productId !== "") {
-                socket.emit("deleteProduct", {productID: vm.productId});
-            }
-            return false;
-        },
-	    displayOrders: () => {
-            socket.emit('getOrders');
-            return false;
-            },
-	    deleteOrder: () => {
-            if (vm.orderId !== "") {
-                socket.emit("deleteOrder", {orderId: vm.orderId});
             }
             return false;
         },
