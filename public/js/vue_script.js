@@ -37,20 +37,19 @@ const vm = new Vue({
                 console.log("Supplier was deleted succesfully!");
             }
         });
-	socket.on('responseDeleteOrder', function ({success}) {
+	    socket.on('responseDeleteOrder', function ({success}) {
             if (!success) {
                 console.error("Order was not deleted properly!");
             } else {
                 console.log("Order was deleted succesfully!");
             }
         });
-	socket.on('responseGetOrders', function ({success, returnValue}) {
-	    if (success) {
-		console.log(JSON.stringify(returnValue));
-	    }
-	    else {
-		console.log("Something went wrong in socket.emit('getOrders')");
-	    }
+	    socket.on('responseGetOrders', function ({success, returnValue}) {
+	        if (success) {
+		        console.log(JSON.stringify(returnValue));
+	        } else {
+		        console.log("Something went wrong in socket.emit('getOrders')");
+	        }
         });
     },
     methods: {
