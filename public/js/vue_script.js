@@ -11,12 +11,13 @@ const vm = new Vue({
         quantity: 0,
         price: 0,
         supplierId: "",
+	productId: "",
 
         supplierName: "",
         supplierPhone: "",
 
         supplierIdToDelete: "",
-        productIdToDelete: ""
+        productIdToDelete: "",
     },
     mounted: function() {
         socket.on('responseGetProducts', function ({success, returnValue}) {
@@ -35,6 +36,14 @@ const vm = new Vue({
             } else {
                 console.log("Supplier was deleted succesfully!");
             }
+        });
+	socket.on('responseGetOrders', function ({success, returnValue}) {
+	    if (success) {
+		console.log(JSON.stringify(returnValue));
+	    }
+	    else {
+		console.log("Something went wrong in socket.emit('getOrders')");
+	    }
         });
     },
     methods: {
@@ -69,7 +78,7 @@ const vm = new Vue({
                 price: vm.price,
                 supplierId: vm.supplierId
             };
-            let id = vm.id;
+            let id = vm.productId;
             socket.emit("updateProduct", { id, productData });
         },
         updateSupplier: () => {
@@ -93,6 +102,10 @@ const vm = new Vue({
                 socket.emit("deleteProduct", {productID: vm.productIdToDelete});
             }
             return false;
-        }
+        },
+	displayOrders: () => {
+            socket.emit('getOrders');
+            return false;
+        },
     }
 });

@@ -15,12 +15,12 @@
             <form id="user-data-form" v-on:submit="submitNewUser()">
                 <section class="user-data-form-basic">
                     Product Code: <input v-model="productCode" type="text" placeholder="Product Code"><br/>
-                    Quantity: <input v-model="quantity" type="number" placeholder="Quantity"><br/>
-                    Price: <input v-model="price" type="number" placeholder="Price"><br/>
+                    Product Quantity: <input v-model="quantity" type="number" placeholder="Product Quantity"><br/>
+                    Product Price: <input v-model="price" type="number" placeholder="Product Price"><br/>
+		    Product ID: <input v-model="productId" type="text" placeholder="Product ID"><br/>
                     Supplier ID: <input v-model="supplierId" type="text" placeholder="Supplier ID"><br/>
                     Supplier Name: <input v-model="supplierName" type="text" placeholder="Supplier name"><br/>
-                    Supplier phone: <input v-model="supplierPhone" type="text" placeholder="Supplier phone"><br/>
-                    ID: <input v-model="id" type="text" placeholder="ID"><br/>
+                    Supplier Phone: <input v-model="supplierPhone" type="text" placeholder="Supplier Phone"><br/>
                 </section>
                 <div style="text-align: center;">
                     <button type="button" class="submit-button" v-on:click="createNewProduct()">Submit new product</button>
@@ -31,6 +31,7 @@
 		<div style="text-align: center;">
                   <button type="button" class="submit-button" v-on:click="updateProduct()">Update product by ID</button>
                   <button type="button" class="submit-button" v-on:click="updateSupplier()">Update supplier by ID</button>
+		  <button type="button" class="submit-button" v-on:click="displayOrders()">Display all orders</button>
                 </div>
             </form>
             <form id="delete-form">
