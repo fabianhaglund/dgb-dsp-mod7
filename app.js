@@ -67,8 +67,9 @@ client.connect(err => {
       const products = database.collection("Product");
       const productSupplier = database.collection("ProductSupplier");
       const productId = getUID();
+      console.log("socket.on createNewProduct");
 
-      products.insertOne({ productId, productCode, quantity, price }, err => {
+      products.insertOne({ productId, productCode, quantity, price, supplierId }, err => {
         if (err) {
           socket.emit("responseCreateNewProduct", { success: false });
         } else {

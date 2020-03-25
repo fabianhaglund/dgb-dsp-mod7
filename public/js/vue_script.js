@@ -11,11 +11,9 @@ const vm = new Vue({
         quantity: 0,
         price: 0,
         supplierId: "",
-	productId: "",
-
+	    productId: "",
         supplierName: "",
         supplierPhone: "",
-
         orderId: "",
     },
     mounted: function() {
@@ -57,6 +55,7 @@ const vm = new Vue({
     },
     methods: {
         createNewProduct: () => {
+            console.log("socket.emit createNewProduct");
             let productData = 
                 {
                     productCode: vm.productCode, 
@@ -137,7 +136,7 @@ const vm = new Vue({
             socket.emit('getOrders');
             return false;
             },
-	deleteOrder: () => {
+	    deleteOrder: () => {
             if (vm.orderId !== "") {
                 socket.emit("deleteOrder", {orderId: vm.orderId});
             }
