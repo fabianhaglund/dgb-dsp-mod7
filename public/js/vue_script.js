@@ -22,6 +22,9 @@ const vm = new Vue({
         socket.on('responseGetProducts', function ({success, returnValue}) {
             console.log(JSON.stringify(returnValue));
         });
+        socket.on('responseGetSuppliers', function({success, returnSupplier}) {
+                console.log(JSON.stringify(returnSupplier));
+        });
         socket.on('responseDeleteProduct', function ({success}) {
             if (!success) {
                 console.error("Product was not deleted properly!");
@@ -70,11 +73,18 @@ const vm = new Vue({
         submitNewSupplier: () =>{
             let supplierData =
             {
-                   supplierName: vm.name,
-                   supplierPhone: vm.phone        
+                   name: vm.supplierName,
+                   phone: vm.supplierPhone        
             };
             socket.emit("createNewSupplier", supplierData);
+            socket.on("responseCreateNewSupplier", function({success, supplierId}){
+                console.log("New supplier has id: " + supplierId);
+            });
             return false;
+        },
+         displayAllSuppliers: () => {
+           socket.emit('getSuppliers');
+           return false; 
         },
         updateProduct: () => {
             console.log("updateProduct");

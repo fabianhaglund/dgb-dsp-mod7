@@ -155,6 +155,14 @@ client.connect(err => {
       });
     });
 
+    //READ:  read suppliers
+    socket.on("getSuppliers", async function() {
+        const suppliers = database.collection("Supplier");            
+        let returnSupplier = {};
+        await suppliers.find().forEach(element => returnSupplier[element._id] = element);
+        socket.emit("responseGetSuppliers", {success: true, returnSupplier});
+      });
+
     //UPDATE: update suppliers
     socket.on("updateSupplier", function({ supplierId, supplierName, supplierPhone }) {
       console.log("updateSupplier");
