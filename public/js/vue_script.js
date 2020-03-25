@@ -100,7 +100,7 @@ const vm = new Vue({
             socket.emit("createNewOrder", { productId, quantity });
         },
         readOrders: () => {
-            console.log("readOrders")M
+            console.log("readOrders");
             socket.emit('getOrders');
             return false;
         },
