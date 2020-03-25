@@ -230,6 +230,14 @@ client.connect(err => {
         }
       });
     });
+
+      //READ: orders
+      socket.on("getOrders", async function() {
+	  const orders = database.collection("Orders");
+	  let returnValue = {};
+	  await orders.find().forEach(element => (returnValue[element._id] = element));
+	  socket.emit("responseGetOrders", { success: true, returnValue }); 
+      });
   });
 
   const server = http.listen(app.get("port"), function() {
