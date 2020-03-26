@@ -18,6 +18,13 @@ const vm = new Vue({
         responseData: ""
     },
     mounted: function() {
+        socket.on('responseCreateNewProduct', function ({success}) {
+            if (!success) {
+                console.error("createProduct failed");
+            } else { 
+                console.log("createProduct succeeded");
+            }
+        });
         socket.on('responseGetProducts', function ({success, returnValue}) {
             let returnData = JSON.stringify(returnValue);
             vm.responseData = returnData;
@@ -72,7 +79,7 @@ const vm = new Vue({
                     price: vm.price,
                     supplierId: vm.supplierId
                 };
-            socket.emit('createNewProduct', productData);
+            socket.emit('createProduct', productData);
             return false;
         },
         readProducts: () => {

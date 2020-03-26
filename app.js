@@ -58,7 +58,7 @@ client.connect(err => {
     console.log("We're in");
 
     //CREATE : new products
-    socket.on("createNewProduct", function({
+    socket.on("createProduct", function({
       productCode,
       quantity,
       price,
@@ -67,7 +67,7 @@ client.connect(err => {
       const products = database.collection("Product");
       const productSupplier = database.collection("ProductSupplier");
       const productId = getUID();
-      console.log("socket.on createNewProduct");
+      console.log("socket.on createProduct");
 
       products.insertOne({ productId, productCode, quantity, price, supplierId }, err => {
         if (err) {

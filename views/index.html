@@ -111,12 +111,14 @@
 
                 </div>
 
-                <h4>RESPONSE DATA</h4>
-                <h6>For read operations only</h6>
-                <div id="responseData" v-bind="responseData">
-                    {{ responseData }}
-                </div> 
-
+                <div class="responseDataWrapper">
+                    <h4>RESPONSE DATA</h4>
+                    <h6>For read operations only</h6>
+                    <div id="responseData" v-bind="responseData">
+                        {{ responseData }}
+                    </div> 
+                </div>
+                    
             </form>
 
         </main>
