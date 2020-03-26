@@ -34,8 +34,7 @@ app.get("/", function(req, res) {
 
 //Sets up the MongoClient
 const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://admin:admin@dsp-mod7-b-cluster-4xabi.mongodb.net/test?retryWrites=true&w=majority";
+const uri = "mongodb+srv://admin:admin@dsp-mod7-b-cluster-4xabi.mongodb.net/test?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 //Utility function
