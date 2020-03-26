@@ -70,6 +70,24 @@
                     </div>
 
                     <div class="collectionOperators">
+                        <button type="button" class="submit-button" v-on:click="createSupplier()">CREATE supplier</button>
+		    
+                        <button type="button" class="submit-button" v-on:click="readSuppliers()">READ supplier</button>
+    
+                        <button type="button" class="submit-button" v-on:click="updateSupplier()">
+                            UPDATE supplier
+                            <span class="specification">supplierId, supplierName, supplierPhone</span>
+                        </button>
+                        
+
+                        <button type="button" class="submit-button" v-on:click="deleteSupplier()">
+                            DELETE supplier
+                            <span class="specification">supplierId</span>
+                        </button>
+        
+                    </div>
+
+                    <div class="collectionOperators">
                         <button type="button" class="submit-button" v-on:click="createOrder()">
                             CREATE order
                             <span class="specification">productId, quantity</span>
@@ -89,24 +107,6 @@
                             <span class="specification">orderId</span>
                         </button>
             
-                    </div>
-
-                    <div class="collectionOperators">
-                        <button type="button" class="submit-button" v-on:click="createSupplier()">CREATE supplier</button>
-		    
-                        <button type="button" class="submit-button" v-on:click="readSuppliers()">READ supplier</button>
-    
-                        <button type="button" class="submit-button" v-on:click="updateSupplier()">
-                            UPDATE supplier
-                            <span class="specification">supplierId, supplierName, supplierPhone</span>
-                        </button>
-                        
-
-                        <button type="button" class="submit-button" v-on:click="deleteSupplier()">
-                            DELETE supplier
-                            <span class="specification">supplierId</span>
-                        </button>
-        
                     </div>
 
                 </div>
