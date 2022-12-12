@@ -5,7 +5,7 @@
     "lint": "eslint app.js public/js/*.js"
   },
   "dependencies": {
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "mongodb": "^3.5.5",
     "socket.io": "^2.0.4",
     "vue": "^2.5.2"
